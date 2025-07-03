@@ -12,10 +12,10 @@ class BootstrapEnsemble(UncertaintyWrapper):
     """
 
     def __init__(self, models: List[nn.Module]):
-        super().__init__(models[0])  
+        super().__init__(models[0])
         self.models = models
 
-    def predict(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    def predict(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:  
         """
         Predict mean and uncertainty by aggregating predictions from all models.
 
