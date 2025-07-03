@@ -11,6 +11,9 @@ def plot_predictions_with_uncertainty(x, mean, std, title="Prediction with Uncer
         std (array-like): 1D array of standard deviations (uncertainties).
         title (str, optional): Plot title. Defaults to "Prediction with Uncertainty".
         save_path (str, optional): If provided, saves the plot to this path instead of showing it.
+
+    Returns:
+        matplotlib.figure.Figure: The created matplotlib Figure.
     """
     x = np.array(x).squeeze()
     mean = np.array(mean).squeeze()
@@ -19,16 +22,18 @@ def plot_predictions_with_uncertainty(x, mean, std, title="Prediction with Uncer
     assert x.ndim == 1 and mean.ndim == 1 and std.ndim == 1, "Inputs must be 1D arrays."
     assert len(x) == len(mean) == len(std), "x, mean, and std must have the same length."
 
-    plt.figure(figsize=(10, 5))
-    plt.plot(x, mean, label="Mean Prediction")
-    plt.fill_between(x, mean - 2*std, mean + 2*std, alpha=0.3, label="95% Confidence Interval")
-    plt.title(title)
-    plt.xlabel("Input")
-    plt.ylabel("Output")
-    plt.legend()
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(x, mean, label="Mean Prediction")
+    ax.fill_between(x, mean - 2*std, mean + 2*std, alpha=0.3, label="95% Confidence Interval")
+    ax.set_title(title)
+    ax.set_xlabel("Input")
+    ax.set_ylabel("Output")
+    ax.legend()
 
     if save_path:
-        plt.savefig(save_path)
-        plt.close()
+        fig.savefig(save_path)
+        plt.close(fig)
     else:
         plt.show()
+
+    return fig
