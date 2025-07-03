@@ -1,4 +1,4 @@
-# uncertainty_toolkit
+# Uncertainty_toolkit
 
 **Lightweight PyTorch Toolkit for Uncertainty Quantification in Deep Learning**
 
@@ -29,6 +29,44 @@ pip install uncertainty_toolkit
 git clone https://github.com/Maryousefi/uncertainty-toolkit.git
 cd uncertainty-toolkit
 pip install -e .
+```
+
+---
+
+## Quickstart
+
+```python
+import torch
+from uncertainty_toolkit import MCDropout, plot_predictions_with_uncertainty
+
+# Wrap an existing PyTorch model with the MC Dropout wrapper
+mc = MCDropout(model, n_samples=50)
+
+# Obtain predictive mean and uncertainty estimates
+mean, std = mc.predict(x)
+
+# Visualize predictions with uncertainty bounds
+plot_predictions_with_uncertainty(x.cpu().numpy(), mean.numpy(), std.numpy())
+
+```
+
+---
+
+## Development
+
+To set up the development environment and run tests:
+
+```bash
+pip install -r requirements-dev.txt
+pytest tests/
+```
+
+---
+
+## License
+
+This project is licensed under the MIT License © 2025 Maryam Yousefi
+
 ```
 
 ---
