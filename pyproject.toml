@@ -24,7 +24,4 @@ Repository = "https://github.com/Maryousefi/uncertainty-toolkit"
 Issues = "https://github.com/Maryousefi/uncertainty-toolkit/issues"
 
 [tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools]
-package-dir = {"" = "src"}
+where = ["."]
