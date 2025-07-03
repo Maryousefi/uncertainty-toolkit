@@ -26,7 +26,7 @@ def plot_predictions_with_uncertainty(x, mean, std, title="Prediction with Uncer
     plt.xlabel("Input")
     plt.ylabel("Output")
     plt.legend()
-    
+
     if save_path:
         plt.savefig(save_path)
         plt.close()
