@@ -5,17 +5,19 @@ class SWAGWrapper(UncertaintyWrapper):
     def __init__(self, model, swag_samples):
         """
         model: base model architecture
-        swag_samples: list of model parameter states collected during training
+        swag_samples: list of model parameter state_dicts collected during training
         """
-        self.model = model
+        super().__init__(model)
+        if not swag_samples:
+            raise ValueError("swag_samples list cannot be empty.")
         self.swag_samples = swag_samples
 
     def predict(self, x, n_samples=30):
         preds = []
-        for i in range(n_samples):
+        self.model.eval()
+        for _ in range(n_samples):
             idx = torch.randint(len(self.swag_samples), (1,)).item()
             self.model.load_state_dict(self.swag_samples[idx])
-            self.model.eval()
             with torch.no_grad():
                 preds.append(self.model(x).detach().cpu())
         preds = torch.stack(preds)

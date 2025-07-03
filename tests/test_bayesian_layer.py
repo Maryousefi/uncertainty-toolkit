@@ -14,7 +14,6 @@ def test_bayesian_linear_variation():
     x = torch.randn(4, 3)
     out1 = layer(x)
     out2 = layer(x)
-    # Outputs should differ due to sampling noise
     assert not torch.allclose(out1, out2), "Outputs should differ because of Bayesian sampling"
 
 def test_bayesian_wrapper_predict_shapes():
@@ -52,6 +51,6 @@ def test_bayesian_wrapper_predict_consistency():
 
     # Means should differ across predictions due to sampling noise
     assert not torch.allclose(mean1, mean2), "Means should differ between runs"
-    # Standard deviations must be positive
+    # must be positive
     assert torch.all(std1 >= 0)
     assert torch.all(std2 >= 0)

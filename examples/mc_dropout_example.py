@@ -20,14 +20,12 @@ class SimpleModel(nn.Module):
 
 # Dummy training
 model = SimpleModel()
-# Normally you'd train here...
 
-# Wrap with MC Dropout
+
 wrapper = MCDropout(model, n_samples=50)
 
 # Example input
 x = torch.linspace(-5, 5, steps=100).unsqueeze(1)
 mean, std = wrapper.predict(x)
 
-# Plot
 plot_predictions_with_uncertainty(x.squeeze().numpy(), mean.numpy(), std.numpy())

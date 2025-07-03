@@ -1,12 +1,31 @@
 import torch
 from .base import UncertaintyWrapper
+from typing import List
+import torch.nn as nn
 
 class DeepEnsemble(UncertaintyWrapper):
-    def __init__(self, models):
-        """models: list of trained PyTorch models"""
+    """
+    Deep Ensemble wrapper around multiple trained PyTorch models.
+
+    Args:
+        models (List[nn.Module]): List of trained PyTorch models.
+    """
+
+    def __init__(self, models: List[nn.Module]):
+        super().__init__(models[0]) 
         self.models = models
 
-    def predict(self, x):
+    def predict(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """
+        Predict mean and uncertainty by aggregating predictions from ensemble models.
+
+        Args:
+            x (torch.Tensor): Input tensor.
+
+        Returns:
+            mean (torch.Tensor): Mean prediction.
+            std (torch.Tensor): Standard deviation (uncertainty).
+        """
         preds = []
         for model in self.models:
             model.eval()

@@ -1,20 +1,30 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=42", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "uncertainty-toolkit"
+name = "uncertainty_toolkit"
 version = "0.1.0"
 description = "Lightweight Uncertainty Estimation Toolkit for PyTorch Models"
 authors = [
-  { name="Maryam Yousefi", email="maryamyousefi.info@gmail.com" }
+  { name = "Maryam Yousefi", email = "maryamyousefi.info@gmail.com" }
 ]
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
   "torch",
-  "matplotlib"
+  "matplotlib",
+  "numpy"
 ]
+keywords = ["pytorch", "uncertainty", "deep-learning", "bayesian", "mc-dropout"]
 
 [project.urls]
-"Homepage" = "https://github.com/Maryousefi/uncertainty-toolkit"
+Homepage = "https://github.com/Maryousefi/uncertainty-toolkit"
+Repository = "https://github.com/Maryousefi/uncertainty-toolkit"
+Issues = "https://github.com/Maryousefi/uncertainty-toolkit/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}

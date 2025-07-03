@@ -1,10 +1,18 @@
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
-dist/
+*.py[cod]
+*.so
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# Build
 build/
-.env
-.venv
-.ipynb_checkpoints/
+dist/
+*.egg-info/
