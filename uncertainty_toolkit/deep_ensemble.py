@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from .base import UncertaintyWrapper
-from typing import List, Tuple  # ✅ Add Tuple!
+from typing import List, Tuple 
 
 class DeepEnsemble(UncertaintyWrapper):
     """
@@ -12,7 +12,7 @@ class DeepEnsemble(UncertaintyWrapper):
     """
 
     def __init__(self, models: List[nn.Module]):
-        super().__init__(models[0]) 
+        super().__init__(models[0])
         self.models = models
 
     def predict(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:  
