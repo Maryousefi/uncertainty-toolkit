@@ -1,7 +1,7 @@
 import torch
-from .base import UncertaintyWrapper
-from typing import List
 import torch.nn as nn
+from .base import UncertaintyWrapper
+from typing import List, Tuple  # ✅ Add Tuple!
 
 class DeepEnsemble(UncertaintyWrapper):
     """
@@ -15,7 +15,7 @@ class DeepEnsemble(UncertaintyWrapper):
         super().__init__(models[0]) 
         self.models = models
 
-    def predict(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    def predict(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:  
         """
         Predict mean and uncertainty by aggregating predictions from ensemble models.
 
