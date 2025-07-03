@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uncertainty-toolkit"
+version = "0.1.0"
+description = "Lightweight Uncertainty Estimation Toolkit for PyTorch Models"
+authors = [
+  { name="Maryam Yousefi", email="maryamyousefi.info@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "torch",
+  "matplotlib"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Maryousefi/uncertainty-toolkit"
