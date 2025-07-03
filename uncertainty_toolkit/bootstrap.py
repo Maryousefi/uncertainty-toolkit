@@ -1,8 +1,7 @@
 import torch
 import torch.nn as nn
 from .base import UncertaintyWrapper
-from typing import List, Tuple  
-
+from typing import List, Tuple 
 class BootstrapEnsemble(UncertaintyWrapper):
     """
     Bootstrap ensemble wrapper around multiple models trained on bootstrapped datasets.
