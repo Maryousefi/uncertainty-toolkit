@@ -11,15 +11,17 @@ class MCDropout(UncertaintyWrapper):
     def _enable_dropout(self):
         """Ensure all dropout layers are active during inference."""
         def apply_dropout(m):
-            if type(m) == nn.Dropout:
+            if isinstance(m, nn.Dropout):
                 m.train()
         self.model.apply(apply_dropout)
 
     def predict(self, x):
         """Run multiple stochastic forward passes."""
         preds = []
-        for _ in range(self.n_samples):
-            preds.append(self.model(x).detach().cpu())
+        self.model.train()  # Ensure dropout active globally
+        with torch.no_grad():
+            for _ in range(self.n_samples):
+                preds.append(self.model(x).detach().cpu())
         preds = torch.stack(preds)
         mean = preds.mean(dim=0)
         std = preds.std(dim=0)
