@@ -63,40 +63,6 @@ pytest tests/
 
 ---
 
-## License
-
-This project is licensed under the MIT License © 2025 Maryam Yousefi
-
-```
-
----
-
-## Quickstart
-
-```python
-import torch
-from uncertainty_toolkit import MCDropout, plot_predictions_with_uncertainty
-
-# Wrap your existing PyTorch model with MC Dropout wrapper
-mc = MCDropout(model, n_samples=50)
-
-# Perform prediction with uncertainty estimates
-mean, std = mc.predict(x)
-
-# Visualize predictions and uncertainty bounds
-plot_predictions_with_uncertainty(x.cpu().numpy(), mean.numpy(), std.numpy())
-```
-
----
-
-## Development
-
-To set up the development environment and run tests:
-
-```bash
-pip install -r requirements-dev.txt
-pytest tests/
-```
 
 ---
 
